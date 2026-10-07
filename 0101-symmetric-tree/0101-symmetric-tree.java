@@ -21,8 +21,11 @@ class Solution {
     private boolean helper(TreeNode root1,TreeNode root2) {
         // Both nodes are null
         if(root1 == null && root2 == null) return true;
-        // One node is null, or values don't match
-        if(root1 == null || root2 == null || root1.val != root2.val) return false;
+        // One node is null
+        if(root1 == null || root2 == null) return false;
+        // values don't match
+        if(root1.val != root2.val) return false;
+
         return helper(root1.left,root2.right) && helper(root1.right,root2.left);
     }
 }
