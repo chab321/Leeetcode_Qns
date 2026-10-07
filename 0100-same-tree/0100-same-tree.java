@@ -15,20 +15,18 @@
  */
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        //Base case 1 both nodes are null
-        if(p == null && q == null) {
-            return true;
-        }
-        // Base case 2 Only one nodes is null
-        if( p == null || q == null) {
-            return false;
-        }
-        // base case 3 root value
-        if(p.val != q.val) {
-            return false;
-        }
-        boolean left = isSameTree(p.left,q.left);
-        boolean right = isSameTree(p.right,q.right);
-        return left && right;
+        
+          return Helper(p,q);
+    }
+    public boolean Helper(TreeNode p, TreeNode q) {
+        //if both root is null then return true
+        if(p == null && q == null) return true;
+        //if both root is not null return flase
+        if(p == null || q == null) return false;
+        //if val not equal to same return false
+        if(p.val != q.val) return false;
+
+        return Helper(p.left,q.left) && Helper(p.right,q.right);
+
     }
 }
