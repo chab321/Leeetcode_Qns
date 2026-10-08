@@ -18,14 +18,13 @@ class Solution {
         if(root == null) return true;
         return helper(root.left,root.right);
     }
-    private boolean helper(TreeNode root1,TreeNode root2) {
-        // Both nodes are null
-        if(root1 == null && root2 == null) return true;
-        // One node is null
-        if(root1 == null || root2 == null) return false;
-        // values don't match
-        if(root1.val != root2.val) return false;
+    private boolean helper(TreeNode left,TreeNode right){
+        if(left == null && right == null) return true;
+        if(left == null || right == null) return false;
 
-        return helper(root1.left,root2.right) && helper(root1.right,root2.left);
+        if(left.val != right.val) return false;
+
+        return helper(left.left,right.right) && helper(left.right,right.left);
+
     }
 }
