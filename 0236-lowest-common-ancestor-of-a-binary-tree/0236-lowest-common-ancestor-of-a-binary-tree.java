@@ -8,23 +8,23 @@
  * }
  */
 class Solution {
-    private TreeNode ans = null;
+    TreeNode ans = null;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        ans = null;
         Helper(root,p,q);
         return ans;
     }
-    private int Helper(TreeNode Node , TreeNode p , TreeNode q) {
-      if(Node == null) return 0;
-      int left = Helper(Node.left,p,q);
-      int right = Helper(Node.right,p,q);
-
-      int self = (Node == p || Node == q) ? 1 : 0;
-      int total = self + left + right;
-
-      if(total == 2 && ans == null) {
-        ans = Node;
-      }
-      return total;
+    private int Helper(TreeNode root,TreeNode p,TreeNode q){
+        if(root == null) return 0;
+        int left = Helper(root.left,p,q);
+        int right = Helper(root.right,p,q);
+        int self = 0;
+        if(root == p || root ==q) {
+            self = 1;
+        }
+        int total = left + self + right;
+        if(total == 2 && ans == null) {
+            ans = root;
+        }
+        return total;
     }
 }
